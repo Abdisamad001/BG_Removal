@@ -2,6 +2,7 @@ import streamlit as st
 from rembg import remove
 from PIL import Image
 from io import BytesIO
+import os
 
 # Set up the Streamlit page configuration
 st.set_page_config(layout="wide", page_title="Image Background Remover")
@@ -56,7 +57,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# File size
+# File size limit
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 
 # Cache image conversion to optimize performance
@@ -76,18 +77,25 @@ def fix_image(upload):
 
 # Sidebar for file upload and download
 st.sidebar.write("## Upload and download :gear:")
-uploaded = st.sidebar.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
+uploaded_image = st.sidebar.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
+
+# Display a static GIF if no image is uploaded
+center_gif_path = "center.gif"
+if os.path.exists(center_gif_path):
+    default_gif = open(center_gif_path, "rb").read()
+else:
+    default_gif = None
 
 # Layout for original and processed images
 col1, col2 = st.columns([1, 1])
 
-if uploaded is not None:
-    if uploaded.size > MAX_FILE_SIZE:
+if uploaded_image is not None:
+    if uploaded_image.size > MAX_FILE_SIZE:
         st.error("The uploaded file is too large. Please upload an image smaller than 5MB.")
     else:
         # Spinner while processing
         with st.spinner("Processing image..."):
-            original, fixed = fix_image(upload=uploaded)
+            original, fixed = fix_image(upload=uploaded_image)
         
         # Display original and processed images
         col1.write("Original Image :camera:")
@@ -98,11 +106,7 @@ if uploaded is not None:
         # Sidebar download button for the processed image
         st.sidebar.markdown("\n")
         st.sidebar.download_button("Download image", convert_image(fixed), "fixed.png", "image/png")
+elif default_gif is not None:
+    st.image(default_gif, use_column_width=True)
 else:
-    # Display the center.gif image when no image is uploaded
-    st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-    st.image("center.gif", use_column_width=True)
-    st.markdown("</div>", unsafe_allow_html=True)
-
-# Additional content or instructions can be added here
-st.write("Upload an image to start removing its background.")
+    st.write("Upload an image to start removing its background.")
