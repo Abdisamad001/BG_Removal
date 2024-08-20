@@ -101,7 +101,7 @@ if uploaded is not None:
 else:
     # Display the center.gif image when no image is uploaded
     st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-    st.image("public/center.gif", use_column_width=True)
+    st.image("center.gif", use_column_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
 # Additional content or instructions can be added here
