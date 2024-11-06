@@ -11,7 +11,7 @@ A powerful and user-friendly web application built with Streamlit that automatic
 ![numpy](https://img.shields.io/badge/numpy-1.23.5-blue)
 
 ## 🌐 Live Demo
-Try it now: [Background Remover App](https://bgremoval-ayu6dnqt5uaefyj9kyh63c.streamlit.app/)
+Got to the website: [Background Remover App](https://bgremoval-ayu6dnqt5uaefyj9kyh63c.streamlit.app/)
 
 ## 🚀 Features
 
