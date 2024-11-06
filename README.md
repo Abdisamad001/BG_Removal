@@ -91,5 +91,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 💬 Contact
 Abdisamad Omar - @LinkedIn
 
-Project Link: https://github.com/Abdisamad001/BG_Removal
 
