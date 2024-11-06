@@ -40,24 +40,25 @@ Clone the repository:
 
 git clone https://github.com/Abdisamad001/BG_Removal.git
 cd BG_Removal
-Set up Conda environment:
 
+Set up Conda environment:
 # Create new conda environment
 conda create -p venv python==3.8.0 -y
 
 # Activate the environment
 conda activate ./venv
-Install required packages:
 
+Install required packages:
 pip install rembg==2.0.30 Pillow==9.4.0 streamlit==1.25.0 numba==0.57.1 numpy==1.23.5
+
 # Or use requirements.txt
 pip install -r requirements.txt
-Run the application:
 
+Run the application:
 streamlit run app.py
+
 Alternative Environment Setup (if not using Conda)
 Using venv:
-
 #### Windows
 python -m venv venv
 .\venv\Scripts\activate
@@ -65,6 +66,7 @@ python -m venv venv
 #### Linux/Mac
 python -m venv venv
 source venv/bin/activate
+
 📖 Usage
 Launch the application using the command above
 Upload an image using the drag-and-drop interface or 'Browse files' button
