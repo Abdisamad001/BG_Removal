@@ -67,20 +67,15 @@ python -m venv venv
 python -m venv venv
 source venv/bin/activate
 
-📖 Usage
-Launch the application using the command above
-Upload an image using the drag-and-drop interface or 'Browse files' button
-Wait for automatic background removal
-Download the processed image from the sidebar
+
 💻 Application Interface
 The application features a clean, user-friendly interface with:
-
 A centered heading "Remove background from your image"
 Drag and drop file upload area
 File size limit of 200MB
 Supported formats: PNG, JPG, JPEG
 Download option in the sidebar
-Open-source project information with GitHub link
+
 
 ⚡ Performance Notes
 Optimized for images up to 200MB
