@@ -81,32 +81,28 @@ uploaded_image = st.sidebar.file_uploader("Upload an image", type=["png", "jpg",
 
 # Display a static GIF if no image is uploaded
 center_gif_path = "center.gif"
-if os.path.exists(center_gif_path):
-    default_gif = open(center_gif_path, "rb").read()
-else:
-    default_gif = None
+default_gif = open(center_gif_path, "rb").read() if os.path.exists(center_gif_path) else None
 
 # Layout for original and processed images
 col1, col2 = st.columns([1, 1])
 
 if uploaded_image is not None:
-    if uploaded_image.size > MAX_FILE_SIZE:
+    if uploaded_image.getbuffer().nbytes > MAX_FILE_SIZE:
         st.error("The uploaded file is too large. Please upload an image smaller than 5MB.")
     else:
-        # Spinner while processing
         with st.spinner("Processing image..."):
-            original, fixed = fix_image(upload=uploaded_image)
-        
-        # Display original and processed images
-        col1.write("Original Image :camera:")
-        col1.image(original, use_column_width=True)
-        col2.write("Removed Background :wrench:")
-        col2.image(fixed, use_column_width=True)
-        
-        # Sidebar download button for the processed image
-        st.sidebar.markdown("\n")
-        st.sidebar.download_button("Download image", convert_image(fixed), "fixed.png", "image/png")
-elif default_gif is not None:
-    st.image(default_gif, use_column_width=True)
+            try:
+                original, fixed = fix_image(upload=uploaded_image)
+                col1.write("Original Image :camera:")
+                col1.image(original, use_container_width=True)
+                col2.write("Removed Background :wrench:")
+                col2.image(fixed, use_container_width=True)
+
+                # Sidebar download button
+                st.sidebar.download_button("Download image", convert_image(fixed), "fixed.png", "image/png")
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
+elif default_gif:
+    st.image(default_gif, use_container_width=True)
 else:
     st.write("Upload an image to start removing its background.")
