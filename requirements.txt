@@ -1,5 +1,6 @@
-rembg
-Pillow
 streamlit
-numba
-numpy
+rembg
+pillow
+pooch
+onnxruntime==1.15.1
+numpy<2
