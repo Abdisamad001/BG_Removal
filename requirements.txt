@@ -2,5 +2,5 @@ streamlit
 rembg
 pillow
 pooch
-onnxruntime==1.15.1
+onnxruntime>=1.16.0
 numpy<2
